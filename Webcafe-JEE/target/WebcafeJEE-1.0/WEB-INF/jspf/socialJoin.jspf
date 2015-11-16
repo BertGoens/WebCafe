@@ -1,6 +1,0 @@
-<section id="social">
-    <div style="background:transparent url('../../images/socialJoin.png'); width:286px; height:34px;float:left;" class="socialJoin">
-    </div>
-    <a style="margin:1em 0.5em;background:transparent url('../../images/soc_facebook.png') no-repeat;float:left;display:block; width:38px;height:38px;" target="_blank" href="http://www.facebook.com"><span class="imgUrl">Facebook</span></a>
-    <a style="margin:1em 0.5em;background:transparent url('../../images/soc_twitter.png') no-repeat;float:left;display:block; width:38px;height:38px;" target="_blank" href="http://www.twitter.com"><span class="imgUrl">Twitter</span></a>
-</section>

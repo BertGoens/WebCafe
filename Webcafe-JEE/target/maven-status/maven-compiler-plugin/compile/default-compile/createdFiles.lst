@@ -1,9 +1,0 @@
-servlets/RegisterUser.class
-util/eventDisplay.class
-servlets/Faq.class
-servlets/Contact.class
-servlets/Login.class
-servlets/Home.class
-listeners/ContextListener.class
-listeners/SessionCounterListener.class
-servlets/Archive.class
