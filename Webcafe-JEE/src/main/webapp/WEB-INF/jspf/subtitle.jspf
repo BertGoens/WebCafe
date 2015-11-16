@@ -1,0 +1,10 @@
+<section id="top">
+    <img alt="miep" src="images/webcafe_beer.png">
+    <section>
+        <h1>Informal</h1>
+        <span class="subtitle">tech meet up</span>
+        <p>
+            Industry updates, tech news, great cases, networking and exploring something different... <br>like: How do you brew beer?
+        </p>
+    </section>
+</section>

@@ -1,0 +1,31 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<section id="upcoming">
+    <!-- TODO afwerken !-->
+    <h3>Upcoming Webcafé</h3>
+    <ul>
+        <c:if test="${upcomingWc == null}">
+            <li>Registrations for this edition are closed.</li>
+            </c:if>
+        <li>
+            <ol>
+                <li>
+                    <span class="bold">Venue</span> : Zaplounge
+                </li>
+                <li>Stationsplein 10/0201</li>
+                <li>8000 Brugge</li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li>
+                    <span class="bold">When</span> : 01/03/2012
+                </li>
+                <li><span class="bold">What time</span> : 18h - 23h</li>
+                <li>Fee: free</li>
+                <li><span class="bold">For who</span> : Designers, developers, IT entrepreneurs, ...</li>
+            </ol>
+        </li>
+    </ul>
+    <div class="button semiButton"><a href="">Register Now!</a></div>
+    <div style="clear:right;"></div>
+</section>

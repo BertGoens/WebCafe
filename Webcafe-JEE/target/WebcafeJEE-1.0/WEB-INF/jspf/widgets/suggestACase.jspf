@@ -1,0 +1,7 @@
+<section id="suggestACase">
+    <h3>Suggest a case</h3>
+    <p>Did you launch a great project recently? Or do you know somebody that developed greatness for web, touch, desktop or mobile? Suggest a case and maybe you will bring a story on one of the following Java Webcafés!
+    </p>
+    <div class="button semiButton"><a href="Contact#bring-a-case">Bring a case!</a></div>
+    <div style="clear:right;"></div>
+</section>

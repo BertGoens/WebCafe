@@ -1,0 +1,101 @@
+/*
+    Document   : webcafe_layout
+    Created on : 15-mrt-2012, 16:37:44
+    Author     : Kasper.Cools
+    Description:
+        Purpose of the stylesheet follows.
+*/
+*,html{margin:0;padding:0; font-family:'Trebuchet MS',Verdana,Tahoma}
+body{background:transparent url('../images/webcafe_bg.png') repeat;}
+footer{background:transparent url('../images/webcafe_footer.png') repeat-x;height:200px;clear:both;}
+footer #slogan{background:transparent url('../images/webcafe_footer_slogan.png') no-repeat;margin:0 auto;width:987px;height:200px;}
+footer nav{margin-left:9em;}
+footer nav a{float:left; cursor:pointer; margin:6.5em 0 0 0.8em}
+.vives{display:block;background:transparent url('../images/logos/logo_vives.png') no-repeat;height: 79px;width: 90px;margin-left: 65px;}
+.sun{display:block;background:transparent url('../images/logos/logo_sun.png') no-repeat;width:180px;height:79px;}
+.java{display:block;background:transparent url('../images/logos/logo_java.png') no-repeat;width:73px;height:79px;}
+.dukeofjava{display:block;float:right;background:transparent url('../images/logos/dukeofjava.png') no-repeat;margin-right:2.5em;width:157px;height:200px;}
+#innerHeader{display:block;background:transparent url('../images/header_inner_bg.png') no-repeat;width:987px;height:100px;margin:0 auto;}
+.imgUrl{display:none;}
+header{background:transparent url('../images/webcafe_header_bg.png') repeat-x;height:104px;}
+h1{color:#685236; font-size:36pt;}
+.subtitle{ color:#000; font-size:16pt; font-weight:bold }
+#innerFooter{width:987px; margin:0 auto;}
+header nav{float:right;margin-top:2em;color:#fff;font-size:20pt}
+header nav a{margin-left:0.5em}
+#contentContainer{width:1030px;margin:0 auto;padding-right:1em;background:transparent url('../images/webcafe_coffeestain.png') no-repeat;min-height:254px}
+#top{clear:both;margin:0;padding:0; color:#595b43;}
+#top img{float:right;width:600px}
+#top section{max-width:275px; font-size: 1.1em;line-height: 200%;text-align: justify;}
+#top .subtitle{ position:relative; left:3em;bottom:0.4em; }
+#middle .subtitle{color:#000;font-size:10pt; }
+section, article{padding-left:1.5em;}
+#faq{clear:both;width:675px}
+.cap{font-variant:small-caps}
+article h2{color:#848c30;width:100%;}
+article {color:#595b43;margin-top:2em;}
+article p{line-height:175%; margin-top:0.5em;}
+.overview{width:73%;float:left;padding-left:0;}
+.border{ background:transparent url('../images/line.png') no-repeat;height:1px;}
+.smallBorder{ background:transparent url('../images/line_small.png') no-repeat;height:1px;}
+.overview .mini{margin:0 1.5em 2em 0;width:300px;float:left;padding:0;}
+article h3{font-weight:normal;color:#848c30;}
+.overview article{margin:0 1.5em 2em 0;padding:0;}
+.overview article .subtitle{color:#723c30; font-size:10pt;}
+.widgets{float:right; width:25%;}
+.widgets section{background:#f9f8ec; color:#2b2b2b;margin:0 0 1.5em 0;padding:0.8em 1.1em;line-height:150%;}
+.widgets ul{margin:0;}
+.widgets ul>li{margin-bottom:1em;}
+ul{list-style:none;}
+ol{list-style:none;}
+.widgets section h3{font-size:14pt;font-weight:normal;color:#292e44;text-align:center;margin:0 1.5em 1em 1.5em;border-bottom:#dedede 1px solid;}
+.widgets{font-size:10pt;}
+.bold{font-weight:bold;}
+.semiButton{background:transparent url('../images/normal_button.png') no-repeat;}
+.button{padding:0;margin:1em 0em 0.5em 0; float:right; width:151px;text-align:center;font-size:12pt; height:30px; color:#fff; border:none;cursor:pointer;font-weight:bold;padding-bottom:0.2em;min-width:120px;}
+.button a {display:block;height:28px;color:#fff;text-decoration:none;padding-top:0.15em;}
+.normalButton{background:transparent url('../images/semi_button.png') no-repeat;}
+form{margin:1em;}
+.input{font-size:14pt;color:#655847;background:transparent url('../images/input_bottom_bg.png') repeat-x left bottom;min-height:30px; border:#b5aa9a 1px solid;border-radius:6px;padding:0 0.3em; margin-bottom:1em; width:90%;}
+:-moz-placeholder,input[type=file]  { color:#9d9183; }
+button.button{margin:0 3em 0 0;}
+a{color:#fff;text-decoration:none;}
+a:hover{color:#fff;}
+.content-left{margin:0.5em 0;padding:0;width:34%;float:left;line-height:160%}
+.content-right{margin:1em 0;width:62%;float:right}
+.content-right img{float:left; margin:0 0.5em 0 0; padding-top:0.5em;  }
+.content-right p{float:left;padding:0;margin:-0.5em 0 0 0; overflow:hidden;}
+.content-left ul>li{margin-bottom:1.5em}
+.socialJoin{background:transparent url('../images/socialJoin.png'); width:286px; height:34px;float:left;}
+#social{float:right; width:400px;}
+#social a{margin:1em 0.5em;float:left;display:block; width:38px;height:38px;}
+.facebook{background:transparent url('../images/soc_facebook.png') no-repeat;}
+.twitter{background:transparent url('../images/soc_twitter.png') no-repeat; margin:1em 0.5em;}
+.bottom{position:relative; bottom:0;}
+.archive img{float:left;margin:0;padding:0.5em 0.5em 0 0 }
+/*Pagination:*/
+.paginatorList {margin: 2px 6px; list-style: none outside none; float:right;}
+.paginatorList li { float: left; padding: 2px 4px; font-size: 1.2em;}
+li.paginatorCurr { font-weight: bold; font-size: 1.5em; margin-top: -2px; }
+.paginatorList a{color:#2B2B2B;}
+#google_map {height:200px}
+.agenda{margin-top:0.5em;}
+.agenda p{font-weight:normal;margin:0;padding:0;margin-left:1em;font-style: italic;}
+.agenda li{background-color:#E0D0BA;font-weight: bold; padding:0.5em;margin:0.20em; }
+.venue>li{margin:1em 0.5em;}
+#registerUpcoming li{ width:65px; height:65px;float:left;margin:0.2em; padding:0;}
+#registerUpcoming img{width:65px;height:65px;margin:0;padding:0;}
+#registerUpcoming{margin:0 auto;width:215px;}
+form li{margin-bottom: 0.5em;}
+form label{ display:inline-block;width:8em;margin-right:0.5em; }
+form ul li input[type=submit]{font-weight:bold;width:125px;margin-top:0.4em;margin-right:0.3em; float:right;}
+.error {padding: 3px;margin: 3px;border: 1px solid #c00;}
+form label.error{width:25em; margin:0;padding:0;}
+form#login{width:19em;}
+form#login input{width:150px;}
+form#login input[type='submit']{width:100px;}
+form#register {max-width: 23.25em;}
+form#register input[type=submit]{width:7em;}
+form#register input{width:20.5em;}
+.loggedIn{position:relative;top:-8em;font-size:9pt;left:82.5em;width:225px;display:block; text-align:right;}
+.stats{color:#fff;width:100px;font-size:8pt;font-weight:bold;position:relative;left:-10em;top:4.5em;}

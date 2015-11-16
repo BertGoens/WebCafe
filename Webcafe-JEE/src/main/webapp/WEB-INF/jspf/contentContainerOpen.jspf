@@ -1,0 +1,5 @@
+<section id="contentContainer">
+    <%@include file="socialJoin.jspf" %>
+    <%@include file="subtitle.jspf" %>
+    <section id="middle">
+        <section class="overview">

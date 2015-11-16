@@ -1,0 +1,11 @@
+<section>
+    <h3>Are you joining us too?</h3>
+    <ul id="registerUpcoming">
+        <li>
+            <img src="images/data/profiles/48392d63-6d65-4a0d-89f1-1c7ffe1c983b.jpg" alt="kasper cools"/>
+        </li>
+        <div style="clear:both"></div>
+    </ul>
+    <div class="button cap semiButton"><a href="RegisterEvent?event=90">Register Now!</a></div>
+    <div style="clear:right;"></div>
+</section>
