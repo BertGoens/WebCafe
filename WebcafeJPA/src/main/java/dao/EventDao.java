@@ -1,11 +1,9 @@
 package dao;
 
 import java.util.List;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import model.Event;
 
 /* @author BertGoens */
@@ -47,5 +45,49 @@ public class EventDao extends BaseDao<Event, Integer> {
             return results.get(0);
         }
         return null;
+    }
+
+    /**
+     * The closest event
+     * @return
+     */
+    public Event getNextEvent() {
+        //SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date ASC LIMIT 1
+        // MySQL date = 'YYYY-MM-DD'
+
+        String qryGetNextEvent = "SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date ASC LIMIT 1";
+        Query query = getEntityManager().createQuery(qryGetNextEvent);
+
+        Object resultEvent = query.getResultList();
+
+        return (Event) resultEvent;
+    }
+
+    /**
+     * List of all coming events, sorted on time.
+     * Closest events first
+     * @return
+     */
+    public List<Event> getComingEvents() {
+        String qryGetComingEvents = "SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date";
+        Query query = getEntityManager().createQuery(qryGetComingEvents);
+
+        List<Event> resultEvent = query.getResultList();
+
+        return resultEvent;
+    }
+
+    /**
+     * List of all past events, sorted on time.
+     * Closest events first
+     * @return
+     */
+    public List<Event> getPastEvents() {
+        String qryGetPastEvents = "SELECT * FROM Event WHERE (date < CURRENT_DATE()) ORDER BY date DESC";
+        Query query = getEntityManager().createQuery(qryGetPastEvents);
+
+        List<Event> resultEvent = query.getResultList();
+
+        return resultEvent;
     }
 }

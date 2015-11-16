@@ -77,4 +77,20 @@ public class UserDao extends BaseDao<User, Integer> {
 
         query.executeUpdate();
     }
+    
+    public boolean loginUserCorrect(String email, String password) {
+        Query query = getEntityManager().createQuery(
+                "SELECT password FROM User WHERE email ?1;");
+        query.setParameter(1, email);
+        
+        String dbPass = (String) query.getSingleResult();
+        
+        if (dbPass != null) {
+            if (dbPass.equals(password)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }
