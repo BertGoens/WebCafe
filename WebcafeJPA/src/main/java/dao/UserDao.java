@@ -3,10 +3,7 @@ package dao;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import model.Event;
 import model.User;
 
@@ -37,7 +34,7 @@ public class UserDao extends BaseDao<User, Integer> {
 
     public List<Event> getRegistredEvents(User user) {
         Query query = getEntityManager().createQuery(
-                "SELECT * FROM Event WHERE Event.evt_id IN "
+                "SELECT e FROM Event e WHERE Event.evt_id IN "
                 + "(SELECT event_users.usr_id FROM `event_users` WHERE `usr_id` = ?1)");
         query.setParameter(1, user.getId());
 
@@ -77,20 +74,20 @@ public class UserDao extends BaseDao<User, Integer> {
 
         query.executeUpdate();
     }
-    
+
     public boolean loginUserCorrect(String email, String password) {
         Query query = getEntityManager().createQuery(
                 "SELECT password FROM User WHERE email ?1;");
         query.setParameter(1, email);
-        
+
         String dbPass = (String) query.getSingleResult();
-        
+
         if (dbPass != null) {
             if (dbPass.equals(password)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 }

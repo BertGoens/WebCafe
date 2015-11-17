@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import model.Event;
@@ -52,15 +51,13 @@ public class EventDao extends BaseDao<Event, Integer> {
      * @return
      */
     public Event getNextEvent() {
-        //SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date ASC LIMIT 1
-        // MySQL date = 'YYYY-MM-DD'
+        String jpaQuery = "SELECT e FROM Event e WHERE (date > CURRENT_DATE()) ORDER BY date";
+        TypedQuery<Event> query = getEntityManager().createQuery(jpaQuery, Event.class)
+                .setFirstResult(0)
+                .setMaxResults(1);
+        Event result = query.getSingleResult();
 
-        String qryGetNextEvent = "SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date ASC LIMIT 1";
-        Query query = getEntityManager().createQuery(qryGetNextEvent);
-
-        Object resultEvent = query.getResultList();
-
-        return (Event) resultEvent;
+        return result;
     }
 
     /**
@@ -69,8 +66,8 @@ public class EventDao extends BaseDao<Event, Integer> {
      * @return
      */
     public List<Event> getComingEvents() {
-        String qryGetComingEvents = "SELECT * FROM Event WHERE (date > CURRENT_DATE()) ORDER BY date";
-        Query query = getEntityManager().createQuery(qryGetComingEvents);
+        String qryGetComingEvents = "SELECT e FROM Event e WHERE (date > CURRENT_DATE()) ORDER BY date";
+        TypedQuery<Event> query = getEntityManager().createQuery(qryGetComingEvents, Event.class);
 
         List<Event> resultEvent = query.getResultList();
 
@@ -83,8 +80,8 @@ public class EventDao extends BaseDao<Event, Integer> {
      * @return
      */
     public List<Event> getPastEvents() {
-        String qryGetPastEvents = "SELECT * FROM Event WHERE (date < CURRENT_DATE()) ORDER BY date DESC";
-        Query query = getEntityManager().createQuery(qryGetPastEvents);
+        String qryGetPastEvents = "SELECT e FROM Event e WHERE (date < CURRENT_DATE()) ORDER BY date DESC";
+        TypedQuery<Event> query = getEntityManager().createQuery(qryGetPastEvents, Event.class);
 
         List<Event> resultEvent = query.getResultList();
 
