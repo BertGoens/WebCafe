@@ -17,19 +17,19 @@ public class City implements Serializable {
     private Date creationDate;
 
     @Column()
-    private String alpha;
+    private String alpha = "";
 
     @Column()
-    private String code;
+    private String code = "";
 
     @Column()
-    private long latitude;
+    private long latitude = 0;
 
     @Column()
-    private long longitude;
+    private long longitude = 0;
 
     @Column()
-    private String name;
+    private String name = "";
 
     @ManyToOne(targetEntity = Province.class)
     @JoinColumn(name = "prov_id")

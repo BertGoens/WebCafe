@@ -1,11 +1,9 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
-/* @author BertGoens */
+
 
 @Entity
 public class Event implements Serializable {
@@ -15,17 +13,26 @@ public class Event implements Serializable {
     @Column(insertable = true, name = "evt_id")
     private int id;
 
+    /*
+    The maximum users that can attend the event
+     */
     @Column()
-    private int maxUsers;
+    private int maxUsers = 10;
+
+    /*
+    The current count of users planning to attend the event
+     */
+    @Column()
+    private int currentUsers;
 
     @Column(name = "eventDescription", length = 2000)
-    private String eventDescription;
+    private String eventDescription = "";
 
     @Column()
-    private String name;
+    private String name = "";
 
     @Column()
-    private String location;
+    private String location = "";
 
     @ManyToOne(targetEntity = City.class)
     @JoinColumn(name = "city_id")
@@ -59,7 +66,7 @@ public class Event implements Serializable {
     private List<Tag> tagList;
 
     @Column()
-    private String imagePath;
+    private String imagePath = "";
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "usr_id")
@@ -69,7 +76,10 @@ public class Event implements Serializable {
     private List<AgendaItem> agendaItemList;
 
     @Column
-    private double fee;
+    private double fee = 0;
+
+    @Column
+    private String forWho = "";
 
     public Event() {
         visitorsList = new ArrayList<>();
@@ -203,6 +213,22 @@ public class Event implements Serializable {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public int getCurrentUsers() {
+        return currentUsers;
+    }
+
+    public void setCurrentUsers(int currentUsers) {
+        this.currentUsers = currentUsers;
+    }
+
+    public String getForWho() {
+        return forWho;
+    }
+
+    public void setForWho(String forWho) {
+        this.forWho = forWho;
     }
 
 }

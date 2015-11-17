@@ -22,10 +22,10 @@ public class AgendaItem implements Serializable {
     private Date endDate;
 
     @Column()
-    private String themeTitel;
+    private String themeTitel = "";
 
     @Column(name = "description", length = 2000)
-    private String description;
+    private String description = "";
 
     @ManyToOne
     private Event eventAgenda;

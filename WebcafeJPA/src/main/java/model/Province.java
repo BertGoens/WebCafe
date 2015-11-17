@@ -17,7 +17,7 @@ public class Province implements Serializable {
     private int id;
 
     @Column()
-    private String name;
+    private String name = "";
 
     public Province() {
 

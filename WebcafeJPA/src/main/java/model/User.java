@@ -14,28 +14,28 @@ public class User implements Serializable {
     private int id;
 
     @Column
-    private String password;
+    private String password = "";
 
     @Column(length = 50, unique = true)
-    private String email;
+    private String email = "";
 
     @Column(length = 30)
-    private String name;
+    private String name = "";
 
     @Column(length = 30)
-    private String forename;
+    private String forename = "";
 
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
     @Column(length = 30)
-    private String firm;
+    private String firm = "";
 
     @Column(length = 30)
-    private String firmFunction;
+    private String firmFunction = "";
 
     @Column()
-    private String imagePath;
+    private String imagePath = "";
 
     public User() {
 

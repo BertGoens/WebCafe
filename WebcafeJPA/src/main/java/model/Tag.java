@@ -13,7 +13,7 @@ public class Tag implements Serializable {
     private int id;
 
     @Column(unique = true, length = 50, nullable = false)
-    private String name;
+    private String name = "";
 
     public Tag() {
     }

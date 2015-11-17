@@ -56,7 +56,10 @@ public class EventDao extends BaseDao<Event, Integer> {
                 .setFirstResult(0)
                 .setMaxResults(1);
         Event result = query.getSingleResult();
-
+        if (result == null) {
+            System.out.println("dao.EventDao.getNextEvent returnvalue = null!");
+            result = new Event();
+        }
         return result;
     }
 
