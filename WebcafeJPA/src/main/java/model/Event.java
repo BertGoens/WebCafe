@@ -28,11 +28,25 @@ public class Event implements Serializable {
     @Column(name = "eventDescription", length = 2000)
     private String eventDescription = "";
 
+    /*
+    The name of the event
+     */
     @Column()
     private String name = "";
 
+    /*
+    The street & number
+    ex: Galloperstraat 39
+     */
     @Column()
     private String location = "";
+
+    /*
+    The venue where the event takes place
+    ex: The party room
+     */
+    @Column()
+    private String venue = "";
 
     @ManyToOne(targetEntity = City.class)
     @JoinColumn(name = "city_id")
@@ -75,9 +89,16 @@ public class Event implements Serializable {
     @OneToMany(mappedBy = "eventAgenda", targetEntity = AgendaItem.class)
     private List<AgendaItem> agendaItemList;
 
+    /*
+    The entry price for the event
+     */
     @Column
     private double fee = 0;
 
+    /*
+    A description of who might be interested in partaking
+    ex: Programmers, Enthousiasts, ..
+     */
     @Column
     private String forWho = "";
 
@@ -229,6 +250,14 @@ public class Event implements Serializable {
 
     public void setForWho(String forWho) {
         this.forWho = forWho;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
 }
