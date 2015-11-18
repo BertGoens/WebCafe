@@ -1,43 +1,33 @@
 package listeners;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import dao.EventDao;
+import javax.servlet.*;
 import model.Event;
 
 /* @author BertGoens */
 public class ContextListener implements ServletContextListener {
 
     int usersLoggedIn;
-    List<Event> PremadeEventList;
-    Event upcomingWebcafe;
+    Event nextEvent;
+    ServletContext context;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContext context = sce.getServletContext();
+        context = sce.getServletContext();
 
-        usersLoggedIn++;
+        usersLoggedIn = 0;
         context.setAttribute("usersLoggedIn", usersLoggedIn);
 
         //get upcoming webcafe
-        context.setAttribute("upcomingWc", upcomingWebcafe);
+        EventDao daoEvent = new EventDao();
+        nextEvent = daoEvent.getNextEvent();
+        context.setAttribute("nextEvent", nextEvent);
 
-        PremadeEventList = new ArrayList<>();
-        Event feest = new Event();
-        feest.setName("Feestje @ Bertn");
-        feest.setLocation("Koksijde");
-        feest.setId(-1);
-        feest.setImagePath("/Users/BertGoens/Pictures/Profiel/sfeer.jpg");
-
-        PremadeEventList.add(feest);
-
-        context.setAttribute("PremadeEventList", PremadeEventList);
+        context.setAttribute("teller", 0);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        usersLoggedIn--;
+        //Nothing to do here?
     }
 }
