@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /* @author BertGoens */
 @Entity
+@Table(name = "wc_City")
 public class City implements Serializable {
 
     @Id

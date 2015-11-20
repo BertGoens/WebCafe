@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /* @author BertGoens */
 @Entity
+@Table(name = "wc_Province")
 public class Province implements Serializable {
 
     @Temporal(TemporalType.DATE)

@@ -77,7 +77,7 @@ public class UserDao extends BaseDao<User, Integer> {
 
     public boolean loginUserCorrect(String email, String password) {
         Query query = getEntityManager().createQuery(
-                "SELECT password FROM User WHERE email ?1;");
+                "SELECT password FROM User WHERE email ?1");
         query.setParameter(1, email);
 
         String dbPass = (String) query.getSingleResult();

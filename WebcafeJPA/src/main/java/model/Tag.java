@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 /* @author BertGoens */
 @Entity
+@Table(name = "wc_Tag")
 public class Tag implements Serializable {
 
     @Id

@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /* @author BertGoens */
 @Entity
+@Table(name = "wc_AgendaItem")
 public class AgendaItem implements Serializable {
 
     @Id

@@ -5,7 +5,11 @@ import java.util.Date;
 import javax.persistence.*;
 
 /* @author BertGoens */
+/**
+ User class
+ */
 @Entity
+@Table(name = "wc_User")
 public class User implements Serializable {
 
     @Id

@@ -4,4 +4,5 @@ WebcafeJPA/src/main/java/run
 nbactions.xml
 nb-configuration.xml
 TestDbItems.sql
+webcafeDbV3.sql
 .DS_Store

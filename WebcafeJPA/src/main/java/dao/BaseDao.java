@@ -11,9 +11,8 @@ import javax.persistence.criteria.CriteriaQuery;
 public abstract class BaseDao<E, Key extends Serializable> implements Dao<E, Key> {
 
     private EntityManagerFactory emf;
-    @PersistenceContext
     private static EntityManager em;
-    
+
     public EntityManager getEntityManager() {
         return em;
     }
@@ -25,14 +24,14 @@ public abstract class BaseDao<E, Key extends Serializable> implements Dao<E, Key
         this.entityClass = (Class) genericSuperclass.getActualTypeArguments()[1];
 
         if (em == null) {
-            emf = Persistence.createEntityManagerFactory("persistence");
+            emf = Persistence.createEntityManagerFactory("bertPU");
             em = emf.createEntityManager();
         }
     }
 
     /**
      * Updates (and creates) entities in the database if the object isn't
-     * already in persistence context To change fields use em.begin() ->
+     * already in persistence context To change fields use em.begin() into
      * em.commit()
      *
      * @param entity

@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "wc_Event")
 public class Event implements Serializable {
 
     @Id
