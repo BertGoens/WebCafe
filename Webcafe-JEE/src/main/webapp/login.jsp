@@ -19,7 +19,13 @@
         <form id="login" method="post" action="${root}/User/Login">
 
             <!--<input type="hidden" id="event" name="event" value="90"/>!-->
-
+            <c:if test="${errors != null}">
+                <ul>
+                    <c:forEach items="${errors}" var="entry">
+                        <li>${entry.value}</li>
+                    </c:forEach>
+                </ul>
+            </c:if>
             <ul>
                 <li>
                     <label for="email">Email: </label>

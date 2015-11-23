@@ -17,19 +17,23 @@ public class UserDao extends BaseDao<User, Integer> {
     public User findByEmail(String mail) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 
-        CriteriaQuery<User> qryFindUserByEmail = cb.createQuery(User.class);
-        Root<User> c = qryFindUserByEmail.from(User.class);
-        ParameterExpression<String> email = cb.parameter(String.class);
-        qryFindUserByEmail.where(cb.equal(c.get("email"), email));
+        CriteriaQuery<User> qryGetUser = cb.createQuery(User.class);
+        Root<User> c = qryGetUser.from(User.class);
+        ParameterExpression<String> pwd = cb.parameter(String.class);
+        qryGetUser.where(cb.like(c.get("email"), pwd));
 
-        TypedQuery<User> query = getEntityManager().createQuery(qryFindUserByEmail);
-        query.setParameter(email, mail);
+        TypedQuery<User> query = getEntityManager().createQuery(qryGetUser)
+                .setFirstResult(0)
+                .setMaxResults(1);
+        query.setParameter(pwd, mail);
 
-        List<User> results = query.getResultList();
-        if (!results.isEmpty()) {
-            return results.get(0);
+        User tryLogInUser = null;
+        try {
+            tryLogInUser = query.getSingleResult();
+        } catch (javax.persistence.NoResultException ex) {
+            return null;
         }
-        return null;
+        return tryLogInUser;
     }
 
     public List<Event> getRegistredEvents(User user) {
@@ -76,20 +80,12 @@ public class UserDao extends BaseDao<User, Integer> {
     }
 
     public boolean loginUserCorrect(String email, String password) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        User tryLogInUser = findByEmail(email);
 
-        CriteriaQuery<User> qryGetUser = cb.createQuery(User.class);
-        Root<User> c = qryGetUser.from(User.class);
-        ParameterExpression<String> pwd = cb.parameter(String.class);
-        qryGetUser.where(cb.like(c.get("email"), pwd));
+        if (tryLogInUser != null) {
+            return tryLogInUser.getPassword().equals(password);
+        }
 
-        TypedQuery<User> query = getEntityManager().createQuery(qryGetUser)
-                .setFirstResult(0)
-                .setMaxResults(1);
-        query.setParameter(pwd, email);
-
-        User tryLogInUser = query.getSingleResult();
-
-        return tryLogInUser.getPassword().equals(password);
+        return false;
     }
 }
