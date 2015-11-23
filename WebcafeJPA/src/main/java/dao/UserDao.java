@@ -34,7 +34,7 @@ public class UserDao extends BaseDao<User, Integer> {
 
     public List<Event> getRegistredEvents(User user) {
         Query query = getEntityManager().createQuery(
-                "SELECT e FROM Event e WHERE Event.evt_id IN "
+                "SELECT e FROM wc_Event e WHERE Event.evt_id IN "
                 + "(SELECT event_users.usr_id FROM `event_users` WHERE `usr_id` = ?1)");
         query.setParameter(1, user.getId());
 
@@ -76,18 +76,20 @@ public class UserDao extends BaseDao<User, Integer> {
     }
 
     public boolean loginUserCorrect(String email, String password) {
-        Query query = getEntityManager().createQuery(
-                "SELECT password FROM User WHERE email ?1");
-        query.setParameter(1, email);
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 
-        String dbPass = (String) query.getSingleResult();
+        CriteriaQuery<User> qryGetUser = cb.createQuery(User.class);
+        Root<User> c = qryGetUser.from(User.class);
+        ParameterExpression<String> pwd = cb.parameter(String.class);
+        qryGetUser.where(cb.like(c.get("email"), pwd));
 
-        if (dbPass != null) {
-            if (dbPass.equals(password)) {
-                return true;
-            }
-        }
+        TypedQuery<User> query = getEntityManager().createQuery(qryGetUser)
+                .setFirstResult(0)
+                .setMaxResults(1);
+        query.setParameter(pwd, email);
 
-        return false;
+        User tryLogInUser = query.getSingleResult();
+
+        return tryLogInUser.getPassword().equals(password);
     }
 }

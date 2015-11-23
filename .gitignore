@@ -1,5 +1,6 @@
 target/
 nbproject/
+lib/
 WebcafeJPA/src/main/java/run
 nbactions.xml
 nb-configuration.xml
