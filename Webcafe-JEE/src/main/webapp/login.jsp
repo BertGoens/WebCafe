@@ -1,9 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/webcafe_layout.css" rel="stylesheet" media="screen"/>
+        <link href="${root}/css/webcafe_layout.css" rel="stylesheet" media="screen"/>
         <title>Java Webcafe</title>
     </head>
     <body>
@@ -12,9 +16,9 @@
 
         <h2>Login<span class="subtitle"></span></h2>
         <div class="border"></div>
-        <form id="login" method="post" action="Login">
+        <form id="login" method="post" action="${root}/User/Login">
 
-            <input type="hidden" id="event" name="event" value="90"/>
+            <!--<input type="hidden" id="event" name="event" value="90"/>!-->
 
             <ul>
                 <li>
@@ -27,7 +31,7 @@
                 </li>
                 <li>
                     <input type="submit" value="Login"/><br/>
-                    <a style="font-size:9pt; color:#685236;" href="register.jsp">
+                    <a style="font-size:9pt; color:#685236;" href="registerUser.jsp">
                         Don't have an account yet?
                     </a>
                 </li>
@@ -35,6 +39,10 @@
         </form>
 
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/upcoming.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/suggestACase.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsClose.jspf" %>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

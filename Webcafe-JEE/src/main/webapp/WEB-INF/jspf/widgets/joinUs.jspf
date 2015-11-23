@@ -1,0 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${nextEvent != null}">
+    <section id="upcoming">
+        <h3>Are you joining us too?</h3>
+        <ul id="registerUpcoming">
+            <c:forEach items="${nextEventVisitors}" var="user">
+                <li>
+                    <img src="${user.getImagePath()}" alt="${user.getForename()} ${user.getForename()}"/>
+                </li>
+            </c:forEach>
+            <div style="clear:both"></div>
+        </ul>
+        <div class="button cap semiButton"><a href="RegisterEvent?event=${nextEvent.getId()}">Register Now!</a></div>
+        <div style="clear:right;"></div>
+
+
+    </section>
+</c:if>

@@ -1,9 +1,4 @@
-
 <div style="clear:left;"></div>
 </section>
-<aside class="widgets">
-    <%@include file="widgets/upcoming.jspf" %>
-    <%@include file="widgets/suggestACase.jspf" %>
-</aside>
-</section>
-</section>
+
+

@@ -28,6 +28,10 @@
         </article>
 
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/upcoming.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/suggestACase.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsClose.jspf" %>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

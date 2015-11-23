@@ -1,9 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/webcafe_layout.css" rel="stylesheet" media="screen"/>
+        <link href="${root}/css/webcafe_layout.css" rel="stylesheet" media="screen"/>
         <title>Java Webcafe</title>
     </head>
     <body>
@@ -12,7 +14,7 @@
 
         <h2>Register<span class="subtitle"></span></h2>
         <div class="border"></div>
-        <form id="register" method="post" action="Register" enctype="multipart/form-data">
+        <form id="register" method="post" action="${root}/User/Register" enctype="multipart/form-data">
             <input type="hidden" id="event" name="eventId" value="90"/>
             <ul>
                 <li>
@@ -29,11 +31,15 @@
                 <li>
                     <label>Photo: </label><input id="image"  type="file" name="file" required/>
                 </li>
-                <li><input type="submit" value="Register"/></li>
+                <li><input type="submit" value="/User/Register"/></li>
             </ul>
         </form>
 
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/upcoming.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/suggestACase.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsClose.jspf" %>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

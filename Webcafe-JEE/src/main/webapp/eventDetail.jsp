@@ -12,6 +12,16 @@
 
 
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>
+        <c:set var="currentEventId" value="1" />
+        <c:if test="${currentEventId == nextEvent.getId()}">
+            <%@include file="WEB-INF/jspf/widgets/upcoming.jspf" %>
+        </c:if>
+        <c:if test="${currentEventId != nextEvent.getId()}">
+            <%@include file="WEB-INF/jspf/widgets/joinUs.jspf" %>
+        </c:if>
+        <%@include file="WEB-INF/jspf/widgets/suggestACase.jspf" %>
+        <%@include file="WEB-INF/jspf/widgets/widgetsClose.jspf" %>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

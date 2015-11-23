@@ -11,6 +11,7 @@
             <a href="${root}/FAQ">FAQ</a>
             <a href="${root}/Archive">Archive</a>
             <a href="${root}/Contact">Contact</a>
+            <a href="${root}/User/Login">Login</a>
         </nav>
         <ul class="stats">
             <li>Stats:
