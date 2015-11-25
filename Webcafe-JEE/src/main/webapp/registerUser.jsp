@@ -23,7 +23,7 @@
         </c:if>
         <div class="border"></div>
         <form id="register" method="post" action="${root}/User/Register?id=${id}" enctype="multipart/form-data">
-            <c:if test="${id != null}">
+            <c:if test="${id != null && id > 0}">
                 <input type="hidden" id="id" name="id" value="${id}"/>
             </c:if>
 
