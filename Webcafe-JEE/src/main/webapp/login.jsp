@@ -16,16 +16,20 @@
 
         <h2>Login<span class="subtitle"></span></h2>
         <div class="border"></div>
+        <c:if test="${errors != null}">
+            <ul>
+                <c:forEach items="${errors}" var="entry">
+                    <li>${entry.value}</li>
+                    </c:forEach>
+            </ul>
+        </c:if>
+        <div class="border"></div>
         <form id="login" method="post" action="${root}/User/Login">
 
-            <!--<input type="hidden" id="event" name="event" value="90"/>!-->
-            <c:if test="${errors != null}">
-                <ul>
-                    <c:forEach items="${errors}" var="entry">
-                        <li>${entry.value}</li>
-                    </c:forEach>
-                </ul>
+            <c:if test="${id != null}">
+                <input type="hidden" id="id" name="id" value="${id}"/>
             </c:if>
+
             <ul>
                 <li>
                     <label for="email">Email: </label>
@@ -37,9 +41,16 @@
                 </li>
                 <li>
                     <input type="submit" value="Login"/><br/>
-                    <a style="font-size:9pt; color:#685236;" href="registerUser.jsp">
-                        Don't have an account yet?
-                    </a>
+                    <c:if test="${id != null}">
+                        <a style="font-size:9pt; color:#685236;" href="${root}/User/Register?id=${id}">
+                            Don't have an account yet?
+                        </a>
+                    </c:if>
+                    <c:if test="${id == null}">
+                        <a style="font-size:9pt; color:#685236;" href="${root}/User/Register">
+                            Don't have an account yet?
+                        </a>
+                    </c:if>
                 </li>
             </ul>
         </form>

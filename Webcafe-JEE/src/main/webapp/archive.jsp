@@ -27,6 +27,17 @@
             </c:forEach>
         </article>
 
+        <ul class="paginatorList">
+            <c:forEach begin="1" end="${endPage + 1}" var="p">
+                <c:if test="${p == currentPage + 1}">
+                    <li class="paginatorCurr paginatorLast">${p}</li>
+                    </c:if>
+                    <c:if test="${p != currentPage + 1}">
+                    <li><a href="${root}/Archive?page=${p}">${p}</a></li>
+                    </c:if>
+                </c:forEach>
+        </ul>
+
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
         <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>
         <%@include file="WEB-INF/jspf/widgets/upcoming.jspf" %>

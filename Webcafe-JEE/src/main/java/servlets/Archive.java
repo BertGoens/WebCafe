@@ -2,6 +2,7 @@ package servlets;
 
 import dao.EventDao;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -10,9 +11,10 @@ import model.Event;
 /* @author BertGoens */
 public class Archive extends HttpServlet {
 
-    int pageNumber;
-    double totalPages;
-    List<Event> pastEventList;
+    private int currentPage;
+    private int endPage;
+    private List<Event> allPastEvents;
+    private List<Event> past5Events;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,14 +27,14 @@ public class Archive extends HttpServlet {
             throws ServletException, IOException {
 
         getRequestedPageNumber(request); //pagina id krijgen
+        request.setAttribute("currentPage", currentPage);
 
         getPastEvents(); //db aanvraag voor verleden events
-
-        request.setAttribute("pastEventList", pastEventList);
+        getPast5Events();
+        request.setAttribute("pastEventList", past5Events);
 
         getPageCount(); //hoeveel pagina links moet ik maken?
-
-        request.setAttribute("pageLinks", totalPages);
+        request.setAttribute("endPage", endPage);
 
         processRequest(request, response);
     }
@@ -45,21 +47,36 @@ public class Archive extends HttpServlet {
 
     private void getRequestedPageNumber(HttpServletRequest request) {
         String page = request.getParameter("page");
-        pageNumber = 0;
-        if (page != null && page.matches("[-+]?\\d*\\.?\\d+")) {
-            pageNumber = Integer.parseInt(page);
+        currentPage = 0;
+        if (page != null && page.matches("[+]?\\d*\\.?\\d+")) {
+            currentPage = Integer.parseInt(page);
+            currentPage--;
         }
     }
 
     private void getPastEvents() {
         EventDao daoEvent = new EventDao();
-        pastEventList = daoEvent.getPastEvents();
-        return;
+        allPastEvents = daoEvent.getPastEvents();
+    }
+
+    private void getPast5Events() {
+        past5Events = new ArrayList<>();
+        int start, end;
+        start = currentPage * 5;
+        end = start + 4;
+        for (int i = start; i < end; i++) {
+            if (i < allPastEvents.size()) {
+                past5Events.add(allPastEvents.get(i));
+            } else {
+                break;
+            }
+        }
     }
 
     private void getPageCount() {
-        totalPages = pastEventList.size() / 5;
+        double totalPages = allPastEvents.size() / 5;
         totalPages = Math.ceil(totalPages);
+        endPage = (int) totalPages;
     }
 
 }

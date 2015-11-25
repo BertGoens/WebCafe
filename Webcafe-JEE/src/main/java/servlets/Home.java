@@ -2,6 +2,7 @@ package servlets;
 
 import dao.EventDao;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -10,9 +11,10 @@ import model.Event;
 /* @author BertGoens */
 public class Home extends HttpServlet {
 
-    private int pageNumber;
+    private int currentPage;
+    private int endPage;
     private List<Event> allComingEvents;
-    private double totalPages;
+    private List<Event> next5Events;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,14 +26,14 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
 
         getRequestedPageNumber(request); //pagina id krijgen
+        request.setAttribute("currentPage", currentPage);
 
         getNextEvents(); //db aanvraag voor komende events
-
-        request.setAttribute("nextEventList", allComingEvents);
+        getNext5Events(); //sorteer 5 volgende
+        request.setAttribute("nextEventList", next5Events);
 
         getPageCount(); //hoeveel pagina links moet ik maken?
-
-        request.setAttribute("pageLinks", totalPages);
+        request.setAttribute("endPage", endPage);
 
         processRequest(request, response);
     }
@@ -44,9 +46,10 @@ public class Home extends HttpServlet {
 
     private void getRequestedPageNumber(HttpServletRequest request) {
         String page = request.getParameter("page");
-        pageNumber = 0;
-        if (page != null && page.matches("[-+]?\\d*\\.?\\d+")) {
-            pageNumber = Integer.parseInt(page);
+        currentPage = 0;
+        if (page != null && page.matches("[+]?\\d*\\.?\\d+")) {
+            currentPage = Integer.parseInt(page);
+            currentPage--;
         }
     }
 
@@ -55,9 +58,24 @@ public class Home extends HttpServlet {
         allComingEvents = daoEvent.getComingEvents();
     }
 
+    private void getNext5Events() {
+        next5Events = new ArrayList<>();
+        int start, end;
+        start = currentPage * 5;
+        end = start + 4;
+        for (int i = start; i < end; i++) {
+            if (i < allComingEvents.size()) {
+                next5Events.add(allComingEvents.get(i));
+            } else {
+                break;
+            }
+        }
+    }
+
     private void getPageCount() {
-        totalPages = allComingEvents.size() / 5;
+        double totalPages = allComingEvents.size() / 5;
         totalPages = Math.ceil(totalPages);
+        endPage = (int) totalPages;
     }
 
 }

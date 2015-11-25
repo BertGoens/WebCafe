@@ -1,7 +1,7 @@
 package validator;
 
 /* @author BertGoens */
-public final class LoginValidator extends FormValidatorBase {
+public class ContactValidator extends FormValidatorBase {
 
     @Override
     void checkItems(String key, Object value) {
@@ -11,9 +11,9 @@ public final class LoginValidator extends FormValidatorBase {
         }
 
         switch (key) {
-            case "pwd":
-                String password = ((String[]) value)[0];
-                if (password.length() < 3 || password.length() > 30) {
+            case "name":
+                String name = ((String[]) value)[0];
+                if (name.length() < 3 || name.length() > 30) {
                     getErrors().put(key, "password must be filled in! (3-30 chars)");
                 }
                 break;
@@ -28,13 +28,18 @@ public final class LoginValidator extends FormValidatorBase {
                 }
                 break;
 
-            case "id":
-                //not needed
+            case "message":
+                String message = ((String[]) value)[0];
+                if (message.length() < 20) {
+                    getErrors().put(key, "message must be filled in! (atleast 20 chars)");
+                }
                 break;
 
-            default:
-                throw new AssertionError("unknown " + key + " " + value + ((String[]) value)[0]);
+            case "type":
+                //not important to validate
+                break;
         }
+
     }
 
 }

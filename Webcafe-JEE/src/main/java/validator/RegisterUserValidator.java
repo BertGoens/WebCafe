@@ -140,6 +140,9 @@ public class RegisterUserValidator implements ObjectValidator<User> {
                 }
                 errors.put("funtion", "function must be filled in");
                 break;
+            case "id":
+                //not needed
+                break;
             default:
                 throw new AssertionError(name + " " + value + " is not handled (RegisterUserValidator)");
         }
@@ -168,6 +171,9 @@ public class RegisterUserValidator implements ObjectValidator<User> {
                 break;
             case "function":
                 resultUser.setFirmFunction(value);
+                break;
+            case "id":
+                //not needed
                 break;
             default:
                 throw new AssertionError(name + " " + value + " is not handled (RegisterUserValidator)");

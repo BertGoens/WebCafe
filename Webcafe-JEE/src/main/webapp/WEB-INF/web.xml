@@ -4,7 +4,6 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listeners.ContextListener</listener-class>
@@ -13,11 +12,14 @@
         <description>HttpSessionListener</description>
         <listener-class>listeners.SessionCounterListener</listener-class>
     </listener>
-
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterEvent</servlet-name>
+        <servlet-class>servlets.RegisterUserToEvent</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -70,6 +72,18 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/User/Login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Detail</servlet-name>
+        <servlet-class>servlets.EventDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Detail</servlet-name>
+        <url-pattern>/Event/Detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterEvent</servlet-name>
+        <url-pattern>/Event/Register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

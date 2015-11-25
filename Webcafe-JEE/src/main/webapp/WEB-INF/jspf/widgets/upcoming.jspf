@@ -21,9 +21,9 @@
                     <li><span class="bold">What time</span> :
                     <fmt:formatDate pattern="HH-mm" value="${nextEvent.getStartTime()}" />  - <fmt:formatDate pattern="HH-mm" value="${nextEvent.getEndTime()}" /></li>
             <li>
-                <span class="bold">Fee</span> : &euro;
+                <span class="bold">Fee</span> :
                 <c:if test="${nextEvent.getFee() == 0}">Free</c:if>
-                <c:if test="${nextEvent.getFee() > 0}">${nextEvent.getFee()}</c:if>
+                <c:if test="${nextEvent.getFee() > 0}">&euro; <fmt:formatNumber type="number" maxFractionDigits="2" value="${nextEvent.getFee()}" /></c:if>
             </li>
                 <li><span class="bold">For who</span> : ${nextEvent.getForWho()}</li>
             </ol>
@@ -32,7 +32,12 @@
 
         <c:if test="${nextEvent.getCurrentUsers() < nextEvent.getMaxUsers()}">
             <div class="button semiButton">
-                <a href="${root}/Event/Detail?id=${nextEvent.getId()}">Register Now!</a>
+                <c:if test="${loggedInUser != null}">
+                    <a href="${root}/Event/Detail?id=${nextEvent.getId()}">Register Now!</a>
+                </c:if>
+                <c:if test="${loggedInUser == null}">
+                    <a href="${root}/User/Login?id=${nextEvent.getId()}">Register Now!</a>
+                </c:if>
             </div>
         </c:if>
         <div style="clear:right;"></div>

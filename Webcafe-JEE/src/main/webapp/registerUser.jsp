@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -13,10 +14,21 @@
 
         <h2>Register<span class="subtitle"></span></h2>
         <div class="border"></div>
-        <form id="register" method="post" action="${root}/User/Register" enctype="multipart/form-data">
-            <input type="hidden" id="event" name="eventId" value="90"/>
+        <c:if test="${errors != null}">
             <ul>
-                <li>
+                <c:forEach items="${errors}" var="entry">
+                    <li>${entry.value}</li>
+                    </c:forEach>
+            </ul>
+        </c:if>
+        <div class="border"></div>
+        <form id="register" method="post" action="${root}/User/Register?id=${id}" enctype="multipart/form-data">
+            <c:if test="${id != null}">
+                <input type="hidden" id="id" name="id" value="${id}"/>
+            </c:if>
+
+                <ul>
+                    <li>
                     <label for="email">Email: </label><input id="email" type="email" required name="email" value=""/>
 
                 </li>
@@ -30,7 +42,7 @@
                 <li>
                     <label>Photo: </label><input id="image"  type="file" name="file" required/>
                 </li>
-                <li><input type="submit" value="/User/Register"/></li>
+                <li><input type="submit" value="Register"/></li>
             </ul>
         </form>
 
