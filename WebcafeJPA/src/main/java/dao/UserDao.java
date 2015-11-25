@@ -59,26 +59,6 @@ public class UserDao extends BaseDao<User, Integer> {
         return query.getResultList();
     }
 
-    public void UnregisterEvent(User user, Event event) {
-        Query query = getEntityManager().createQuery(
-                "DELETE FROM `event_users`\n"
-                + "WHERE event_users.evt_id = ?1 "
-                + "AND event_users.evt_id = ?2");
-        query.setParameter(1, user.getId());
-        query.setParameter(2, event.getId());
-
-        query.executeUpdate();
-    }
-
-    public void RegisterEvent(User user, Event event) {
-        Query query = getEntityManager().createQuery(
-                "INSERT INTO event_users (usr_id, evt_id) VALUES (?1, ?2);");
-        query.setParameter(1, user.getId());
-        query.setParameter(2, event.getId());
-
-        query.executeUpdate();
-    }
-
     public boolean loginUserCorrect(String email, String password) {
         User tryLogInUser = findByEmail(email);
 

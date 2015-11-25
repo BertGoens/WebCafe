@@ -261,4 +261,94 @@ public class Event implements Serializable {
         this.venue = venue;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + this.maxUsers;
+        hash = 41 * hash + this.currentUsers;
+        hash = 41 * hash + Objects.hashCode(this.eventDescription);
+        hash = 41 * hash + Objects.hashCode(this.name);
+        hash = 41 * hash + Objects.hashCode(this.location);
+        hash = 41 * hash + Objects.hashCode(this.venue);
+        hash = 41 * hash + Objects.hashCode(this.city);
+        hash = 41 * hash + Objects.hashCode(this.date);
+        hash = 41 * hash + Objects.hashCode(this.startTime);
+        hash = 41 * hash + Objects.hashCode(this.endTime);
+        hash = 41 * hash + Objects.hashCode(this.visitorsList);
+        hash = 41 * hash + Objects.hashCode(this.tagList);
+        hash = 41 * hash + Objects.hashCode(this.imagePath);
+        hash = 41 * hash + Objects.hashCode(this.creator);
+        hash = 41 * hash + Objects.hashCode(this.agendaItemList);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.fee) ^ (Double.doubleToLongBits(this.fee) >>> 32));
+        hash = 41 * hash + Objects.hashCode(this.forWho);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Event other = (Event) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.maxUsers != other.maxUsers) {
+            return false;
+        }
+        if (this.currentUsers != other.currentUsers) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.fee) != Double.doubleToLongBits(other.fee)) {
+            return false;
+        }
+        if (!Objects.equals(this.eventDescription, other.eventDescription)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.location, other.location)) {
+            return false;
+        }
+        if (!Objects.equals(this.venue, other.venue)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagePath, other.imagePath)) {
+            return false;
+        }
+        if (!Objects.equals(this.forWho, other.forWho)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (!Objects.equals(this.startTime, other.startTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.endTime, other.endTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.visitorsList, other.visitorsList)) {
+            return false;
+        }
+        if (!Objects.equals(this.tagList, other.tagList)) {
+            return false;
+        }
+        if (!Objects.equals(this.creator, other.creator)) {
+            return false;
+        }
+        return Objects.equals(this.agendaItemList, other.agendaItemList);
+    }
+
 }

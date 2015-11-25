@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 
 /* @author BertGoens */
@@ -120,6 +121,60 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.password);
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.name);
+        hash = 47 * hash + Objects.hashCode(this.forename);
+        hash = 47 * hash + Objects.hashCode(this.birthday);
+        hash = 47 * hash + Objects.hashCode(this.firm);
+        hash = 47 * hash + Objects.hashCode(this.firmFunction);
+        hash = 47 * hash + Objects.hashCode(this.imagePath);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.forename, other.forename)) {
+            return false;
+        }
+        if (!Objects.equals(this.firm, other.firm)) {
+            return false;
+        }
+        if (!Objects.equals(this.firmFunction, other.firmFunction)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagePath, other.imagePath)) {
+            return false;
+        }
+        return Objects.equals(this.birthday, other.birthday);
     }
 
 }
