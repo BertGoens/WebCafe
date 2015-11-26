@@ -4,19 +4,42 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <header>
+    <c:if test="${loggedInUser != null}">
+        <ul class="account">
+            <li>
+                <ul>
+                    <li><a href="${root}/User/Logout">Logout</a></li>
+                    <li><a href="${root}/Account">Account</a></li>
+                        <c:if test="${loggedInUser.getIsAdmin()}">
+                        <li><a href="${root}/Admin/">Admin-Panel</a></li>
+                    </c:if>
+                    <li>${loggedInUser.getEmail()}</li>
+                </ul>
+            </li>
+        </ul>
+    </c:if>
+    <c:if test="${loggedInUser == null}">
+        <ul class="account">
+            <li>
+                <ul>
+                    <li>
+                        <a href="${root}/User/Login">Login</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </c:if>
     <section id="innerHeader">
-
         <nav>
             <a href="${root}/Home">Home</a>
             <a href="${root}/FAQ">FAQ</a>
             <a href="${root}/Archive">Archive</a>
             <a href="${root}/Contact">Contact</a>
-            <a href="${root}/User/Login">Login</a>
         </nav>
         <ul class="stats">
             <li>Stats:
                 <ol>
-                    <li>Users loggedIn: ${usersLoggedIn}</li>
+                    <li>Users logged-in: ${usersLoggedIn}</li>
                     <li>Active Sessions: ${teller}</li>
                 </ol>
             </li>

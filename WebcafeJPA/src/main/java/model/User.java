@@ -18,6 +18,9 @@ public class User implements Serializable {
     @Column(name = "usr_id")
     private int id;
 
+    @Column
+    private boolean isAdmin = false;
+    
     @Column(length = 30)
     private String password = "";
 
@@ -175,6 +178,14 @@ public class User implements Serializable {
             return false;
         }
         return Objects.equals(this.birthday, other.birthday);
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 }
