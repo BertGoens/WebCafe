@@ -19,14 +19,14 @@
                         <span class="bold">When</span> : ${nextEvent.getDate()}
                     </li>
                     <li><span class="bold">What time</span> :
-                    <fmt:formatDate pattern="HH-mm" value="${nextEvent.getStartTime()}" />  - <fmt:formatDate pattern="HH-mm" value="${nextEvent.getEndTime()}" /></li>
-            <li>
-                <span class="bold">Fee</span> :
-                <c:if test="${nextEvent.getFee() == 0}">Free</c:if>
-                <c:if test="${nextEvent.getFee() > 0}">&euro; <fmt:formatNumber type="number" maxFractionDigits="2" value="${nextEvent.getFee()}" /></c:if>
-            </li>
-                <li><span class="bold">For who</span> : ${nextEvent.getForWho()}</li>
-            </ol>
+                        <fmt:formatDate pattern="HH-mm" value="${nextEvent.getStartTime()}" />  - <fmt:formatDate pattern="HH-mm" value="${nextEvent.getEndTime()}" /></li>
+                    <li>
+                        <span class="bold">Fee</span> :
+                        <c:if test="${nextEvent.getFee() == 0}">Free</c:if>
+                        <c:if test="${nextEvent.getFee() > 0}">&euro; <fmt:formatNumber type="number" maxFractionDigits="2" value="${nextEvent.getFee()}" /></c:if>
+                        </li>
+                        <li><span class="bold">For who</span> : ${nextEvent.getForWho()}</li>
+                </ol>
             </li>
         </ul>
 

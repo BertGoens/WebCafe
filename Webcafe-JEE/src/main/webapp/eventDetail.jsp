@@ -24,7 +24,7 @@
                     <div id="google_map" address="${detailEvent.getLocation()}, ${detailEvent.getCity().getCode()} ${detailEvent.getCity().getName()}, ${detailEvent.getCity().getProvince().getName()}"></div>
                 </section>
                 <div style="clear:both"></div>
-            <p>${detailEvent.getEventDescription()}</p>
+                <p>${detailEvent.getEventDescription()}</p>
 
         </article>
             <article>
@@ -42,9 +42,9 @@
                 </ul>
             </article>
             <article>
-            <h2>Venue</h2>
-            <div class="border"></div>
-            <ul class="venue">
+                <h2>Venue</h2>
+                <div class="border"></div>
+                <ul class="venue">
                 <li>
                     <ol>
                         <ol>
@@ -73,7 +73,7 @@
                             <span class="bold">Fee</span> :
                             <c:if test="${detailEvent.getFee() == 0}">Free</c:if>
                             <c:if test="${detailEvent.getFee() > 0}">&euro; <fmt:formatNumber type="number" maxFractionDigits="2" value="${detailEvent.getFee()}" /></c:if>
-                        </li>
+                            </li>
                             <li>
                                 <span class="bold">For who</span>: ${detailEvent.getForWho()}
                         </li>

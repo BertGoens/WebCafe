@@ -3,7 +3,6 @@ package validator;
 import java.util.*;
 
 /* @author BertGoens */
-
 public abstract class FormValidatorBase implements FormValidator {
 
     private Map<String, String> errors;

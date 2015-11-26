@@ -5,7 +5,6 @@ import javax.servlet.ServletContext;
 import model.User;
 
 /* @author BertGoens */
-
 public final class UsersUtil {
 
     public static void setLoggedInUser(ServletContext context, User loggedInUser) {

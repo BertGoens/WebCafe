@@ -6,7 +6,7 @@
         <ul id="registerUpcoming">
             <c:forEach items="${nextEventVisitors}" var="user">
                 <li>
-                    <img src="${user.getImagePath()}" alt="${user.getForename()} ${user.getForename()}"/>
+                    <img src="${root}${user.getImagePath()}" alt="${user.getForename()} ${user.getForename()}"/>
                 </li>
             </c:forEach>
             <div style="clear:both"></div>
@@ -19,8 +19,8 @@
                     <c:if test="${nextEvent.getVisitorsList().contains(loggedInUser)}" >
                         <a href="${root}/Event/Detail?id=${nextEvent.getId()}">Event details</a>
                     </c:if>
-                        <c:if test="${!nextEvent.getVisitorsList().contains(loggedInUser)}">
-                            <a href="${root}/Event/Register?id=${nextEvent.getId()}">Register Now!</a>
+                    <c:if test="${!nextEvent.getVisitorsList().contains(loggedInUser)}">
+                        <a href="${root}/Event/Register?id=${nextEvent.getId()}">Register Now!</a>
                     </c:if>
                 </c:if>
         </div>
