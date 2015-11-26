@@ -8,6 +8,18 @@
         <filter-name>AdminFilter</filter-name>
         <filter-class>filters.AdminFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AccountFilter</filter-name>
+        <filter-class>filters.AccountFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccountFilter</filter-name>
+        <url-pattern>/Admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AccountFilter</filter-name>
+        <url-pattern>/Account/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <url-pattern>/Admin/*</url-pattern>
@@ -29,6 +41,14 @@
     <servlet>
         <servlet-name>RegisterEvent</servlet-name>
         <servlet-class>servlets.RegisterUserToEvent</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Account</servlet-name>
+        <servlet-class>servlets.Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>servlets.Admin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -101,6 +121,14 @@
     <servlet-mapping>
         <servlet-name>RegisterEvent</servlet-name>
         <url-pattern>/Event/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account</servlet-name>
+        <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/Admin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

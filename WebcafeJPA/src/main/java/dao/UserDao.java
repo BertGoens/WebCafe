@@ -37,12 +37,19 @@ public class UserDao extends BaseDao<User, Integer> {
     }
 
     public List<Event> getRegistredEvents(User user) {
-        Query query = getEntityManager().createQuery(
-                "SELECT e FROM wc_Event e WHERE Event.evt_id IN "
-                + "(SELECT event_users.usr_id FROM `event_users` WHERE `usr_id` = ?1)");
+        //SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE())
+        //AND wc_Event.evt_id IN
+        //( SELECT event_users.evt_id FROM event_users
+        //WHERE event_users.usr_id = 1)
+        //ORDER BY Date
+        Query query = getEntityManager().createNativeQuery(
+                "SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE()) AND wc_Event.evt_id IN "
+                + "( SELECT event_users.evt_id FROM event_users HERE event_users.usr_id = 1)"
+                + "ORDER BY Date", Event.class);
         query.setParameter(1, user.getId());
 
         return query.getResultList();
+
     }
 
     public List<Event> getCreatorEvents(User user) {

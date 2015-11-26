@@ -40,7 +40,7 @@
                                     <span class="bold">When </span>: ${evt.getDate()}
                                 </li>
                                 <li>
-                                    <span class="bold">What time</span>: <fmt:formatDate pattern="HH-mm" value="${evt.getStartTime()}" />h - <fmt:formatDate pattern="HH-mm" value="${evt.getEndTime()}" />h
+                                    <span class="bold">What time</span>: <fmt:formatDate pattern="H-mm" value="${evt.getStartTime()}" />h - <fmt:formatDate pattern="H-mm" value="${evt.getEndTime()}" />h
                                 </li>
                                 <li>
                                     <span class="bold">Fee</span>:
