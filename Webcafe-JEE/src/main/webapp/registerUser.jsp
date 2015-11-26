@@ -29,7 +29,7 @@
 
                 <ul>
                     <li>
-                    <label for="email">Email: </label><input id="email" type="email" required name="email" value=""/>
+                        <label for="email">Email: </label><input id="email" type="email" required name="email" value=""/>
 
                 </li>
 

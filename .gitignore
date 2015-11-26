@@ -2,6 +2,7 @@ target/
 nbproject/
 lib/
 WebcafeJPA/src/main/java/run
+Webcafe-JEE/src/main/webapp/images
 nbactions.xml
 nb-configuration.xml
 TestDbItems.sql
