@@ -19,7 +19,7 @@
                         </c:forEach>
                     </span></h2>
                 <div class="border"></div>
-                <p><img width="300" src="${evt.getImagePath()}"/>
+                <p><img width="300" src="${root}${evt.getImagePath()}"/>
                     ${evt.getEventDescription()}
                 <div class="button normalButton" ><a href="Event/Detail?Id=${evt.getId()}">View more</a></div>
 

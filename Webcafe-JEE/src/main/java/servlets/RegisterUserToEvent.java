@@ -28,7 +28,7 @@ public class RegisterUserToEvent extends HttpServlet {
             EventDao ed = new EventDao();
             Event subscribeTo = ed.findById(id);
             subscribeTo.getVisitorsList().add(loggedInUser);
-            ed.update(subscribeTo);
+            ed.merge(subscribeTo);
             response.sendRedirect(getServletContext().getContextPath() + "/Home");
             //Unregister on event
         }

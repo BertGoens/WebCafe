@@ -6,7 +6,7 @@
         <ul id="registerUpcoming">
             <c:forEach items="${nextEventVisitors}" var="user">
                 <li>
-                    <img src="${root}${user.getImagePath()}" alt="${user.getForename()} ${user.getForename()}"/>
+                    <img src="${root}${user.getImagePath()}" alt="${user.getForename()} ${user.getName()}"/>
                 </li>
             </c:forEach>
             <div style="clear:both"></div>

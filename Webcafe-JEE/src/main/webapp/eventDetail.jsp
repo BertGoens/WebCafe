@@ -18,7 +18,7 @@
             <h2>${detailEvent.getName()} <span class="subtitle"> </span></h2>
             <div class="border"></div>
             <section class="content-left">
-                <img width="250" height="200"style="margin-top:0.5em" src="${detailEvent.getImagePath()}">
+                <img width="250" height="200"style="margin-top:0.5em" src="${root}${detailEvent.getImagePath()}">
             </section>
                 <section class="content-right">
                     <div id="google_map" address="${detailEvent.getLocation()}, ${detailEvent.getCity().getCode()} ${detailEvent.getCity().getName()}, ${detailEvent.getCity().getProvince().getName()}"></div>

@@ -56,7 +56,7 @@
                 </section>
                 <section class="content-right">
 
-                    <p><img width="150" height="100" src="${evt.getImagePath()}"/>
+                    <p><img width="150" height="100" src="${root}${evt.getImagePath()}"/>
                         ${evt.getEventDescription()}
                     </p>
                     <div class="button normalButton" >

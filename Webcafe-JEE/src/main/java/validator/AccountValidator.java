@@ -47,7 +47,7 @@ public class AccountValidator implements ObjectValidator<Boolean> {
         }
 
         UserDao ud = new UserDao();
-        ud.update(updateUser);
+        ud.merge(updateUser);
 
         return errors.isEmpty();
     }
@@ -179,8 +179,11 @@ public class AccountValidator implements ObjectValidator<Boolean> {
         String serverFolder = "/images/data/profiles/";
 
         //Delete old image
-        File delFile = new File(sRootPath + updateUser.getImagePath());
-        delFile.delete();
+        try {
+            File delFile = new File(sRootPath + updateUser.getImagePath());
+            delFile.delete();
+        } catch (Exception e) {
+        }
 
         //Generate random GUID for name
         UUID uuid = UUID.randomUUID();

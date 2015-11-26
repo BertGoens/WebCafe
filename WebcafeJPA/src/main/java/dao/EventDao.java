@@ -12,6 +12,14 @@ public class EventDao extends BaseDao<Event, Integer> {
         entityClass = Event.class;
     }
 
+    @Override
+    public void merge(Event event) {
+        if (getEntityManager().find(Event.class, event.getId()) == null) {
+            throw new IllegalArgumentException("Unknown Event id: " + event.getId());
+        }
+        getEntityManager().merge(event);
+    }
+
     public Event findByName(String name) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 
