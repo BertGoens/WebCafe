@@ -1,4 +1,4 @@
-package servlets;
+package servlets.account.event;
 
 import dao.EventDao;
 import java.io.IOException;
@@ -13,25 +13,21 @@ public class RegisterUserToEvent extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = -1;
-        String idPara = request.getParameter("id");
-        if (idPara != null && idPara.matches("[+]?\\d*\\.?\\d+")) {
-            id = Integer.parseInt(idPara);
+        int eventId = -1;
+        try {
+            eventId = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+            response.sendRedirect(getServletContext().getContextPath() + "/Home");
+            return;
         }
 
         User loggedInUser = UsersUtil.getLoggedInUser(getServletContext());
-        if (id < 1 || loggedInUser == null) {
-            //incorrect id or void user
-            response.sendRedirect(getServletContext().getContextPath() + "/Home");
-        } else {
-            //Register on event
-            EventDao ed = new EventDao();
-            Event subscribeTo = ed.findById(id);
-            subscribeTo.getVisitorsList().add(loggedInUser);
-            ed.merge(subscribeTo);
-            response.sendRedirect(getServletContext().getContextPath() + "/Home");
-            //Unregister on event
-        }
+
+        EventDao ed = new EventDao();
+        Event subscribeTo = ed.findById(eventId);
+        subscribeTo.getVisitorsList().add(loggedInUser);
+        ed.merge(subscribeTo);
+        response.sendRedirect(getServletContext().getContextPath() + "/Home");
 
     }
 

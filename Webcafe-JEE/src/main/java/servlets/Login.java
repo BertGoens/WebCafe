@@ -54,7 +54,7 @@ public class Login extends HttpServlet {
                 User loggedInUser = daoUser.findByEmail(email);
                 UsersUtil.setLoggedInUser(getServletContext(), loggedInUser);
                 if (id > 0) {
-                    response.sendRedirect(request.getContextPath() + "/Event/Register?id=" + id);
+                    response.sendRedirect(request.getContextPath() + "/Account/Event/Register?id=" + id);
                 } else {
                     response.sendRedirect(request.getContextPath() + "/Home");
                 }

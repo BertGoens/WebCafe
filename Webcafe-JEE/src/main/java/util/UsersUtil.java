@@ -48,12 +48,11 @@ public final class UsersUtil {
         if (userMap.containsKey(loggedInUser)) {
             Integer count = userMap.get(loggedInUser);
             userMap.put(loggedInUser, count - 1);
-
-            //meerdere sessies open
-        } else {
-            userMap.remove(loggedInUser);
-            usersLoggedIn--;
-            context.setAttribute(SS_USERSLOGGEDIN, usersLoggedIn);
+            if (userMap.get(loggedInUser) < 1) {
+                userMap.remove(loggedInUser);
+                usersLoggedIn--;
+                context.setAttribute(SS_USERSLOGGEDIN, usersLoggedIn);
+            }
         }
 
         context.setAttribute(AS_USERMAP, userMap);

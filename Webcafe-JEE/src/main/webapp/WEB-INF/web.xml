@@ -5,20 +5,20 @@
         <param-value>Development</param-value>
     </context-param>
     <filter>
-        <filter-name>AdminFilter</filter-name>
-        <filter-class>filters.AdminFilter</filter-class>
-    </filter>
-    <filter>
         <filter-name>AccountFilter</filter-name>
         <filter-class>filters.AccountFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>AccountFilter</filter-name>
-        <url-pattern>/Admin/*</url-pattern>
-    </filter-mapping>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filters.AdminFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>AccountFilter</filter-name>
         <url-pattern>/Account/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AccountFilter</filter-name>
+        <url-pattern>/Admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
@@ -38,12 +38,8 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>RegisterEvent</servlet-name>
-        <servlet-class>servlets.RegisterUserToEvent</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Account</servlet-name>
-        <servlet-class>servlets.Account</servlet-class>
+        <servlet-class>servlets.account.Account</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Admin</servlet-name>
@@ -134,10 +130,6 @@
         <url-pattern>/Event/Detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterEvent</servlet-name>
-        <url-pattern>/Event/Register</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Account</url-pattern>
     </servlet-mapping>
@@ -162,6 +154,22 @@
         <servlet-name>Table_User_Delete</servlet-name>
         <url-pattern>/Admin/Tables/User/Delete</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterEvent</servlet-name>
+        <servlet-class>servlets.account.event.RegisterUserToEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterEvent</servlet-name>
+        <url-pattern>/Account/Event/Register</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UnregisterUserToEvent</servlet-name>
+        <servlet-class>servlets.account.event.UnregisterUserToEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UnregisterUserToEvent</servlet-name>
+        <url-pattern>/Account/Event/Unregister</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -170,4 +178,14 @@
     <welcome-file-list>
         <welcome-file>Home</welcome-file>
     </welcome-file-list>
+    <!--
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error/error.jsp</location>
+    </error-page>
+    !-->
 </web-app>

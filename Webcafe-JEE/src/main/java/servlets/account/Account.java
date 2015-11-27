@@ -1,13 +1,17 @@
-package servlets;
+package servlets.account;
 
+import dao.UserDao;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import model.Event;
+import model.User;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import util.UsersUtil;
 import validator.UpdateUserValidator;
 
 /* @author BertGoens */
@@ -17,10 +21,10 @@ public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //List of subscribed events
-        //UserDao daoUser = new UserDao();
-        //User loggedIn = UsersUtil.getLoggedInUser(getServletContext());
-        //List<Event> futureEvents = daoUser.getRegistredEvents(loggedIn);
-        //request.setAttribute("futureEvents", futureEvents);
+        UserDao daoUser = new UserDao();
+        User loggedIn = UsersUtil.getLoggedInUser(getServletContext());
+        List<Event> futureEvents = daoUser.getFutureRegistredEvents(loggedIn);
+        request.setAttribute("futureEvents", futureEvents);
         request.getRequestDispatcher("/account.jsp").forward(request, response);
     }
 

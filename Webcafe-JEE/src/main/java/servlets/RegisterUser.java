@@ -53,7 +53,7 @@ public class RegisterUser extends HttpServlet {
         util.UsersUtil.setLoggedInUser(getServletContext(), registeredUser);
         //finaly done
         String rd = (rVal.getSubscribeEventId() > 0)
-                ? (getServletContext().getContextPath() + "/Event/Register?=" + rVal.getSubscribeEventId())
+                ? (getServletContext().getContextPath() + "Account/Event/Register?=" + rVal.getSubscribeEventId())
                 : getServletContext().getContextPath() + "/Home";
         response.sendRedirect(rd);
     }

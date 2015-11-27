@@ -20,7 +20,7 @@
                         <a href="${root}/Event/Detail?id=${nextEvent.getId()}">Event details</a>
                     </c:if>
                     <c:if test="${!nextEvent.getVisitorsList().contains(loggedInUser)}">
-                        <a href="${root}/Event/Register?id=${nextEvent.getId()}">Register Now!</a>
+                        <a href="${root}/Account/Event/Register?id=${nextEvent.getId()}">Register Now!</a>
                     </c:if>
                 </c:if>
         </div>

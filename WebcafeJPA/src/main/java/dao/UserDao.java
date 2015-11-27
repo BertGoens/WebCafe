@@ -36,19 +36,33 @@ public class UserDao extends BaseDao<User, Integer> {
         return tryLogInUser;
     }
 
-    public List<Event> getRegistredEvents(User user) {
-        //SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE())
+    public List<Event> getFutureRegistredEvents(User user) {
+        String q = "{SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE()) "
+                + "AND wc_Event.evt_id IN "
+                + "( SELECT event_users.evt_id FROM event_users"
+                + "WHERE event_users.usr_id = ?1)"
+                + "ORDER BY wc_EVent.date}";
+        Query query = getEntityManager().createNativeQuery(q, Event.class)
+                .setParameter(1, user.getId());
+//SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE())
         //AND wc_Event.evt_id IN
         //( SELECT event_users.evt_id FROM event_users
         //WHERE event_users.usr_id = 1)
         //ORDER BY Date
-        Query query = getEntityManager().createNativeQuery(
+        /*Query query = getEntityManager().createNativeQuery(
                 "SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE()) AND wc_Event.evt_id IN "
                 + "( SELECT event_users.evt_id FROM event_users HERE event_users.usr_id = 1)"
                 + "ORDER BY Date", Event.class);
         query.setParameter(1, user.getId());
 
         return query.getResultList();
+         */
+ /*Query query = getEntityManager().createNativeQuery("{call getRegisteredFutureEvents(?)}",
+                Event.class)
+                .setParameter(1, user.getId());
+*/
+        List<Event> result = query.getResultList();
+        return result;
 
     }
 

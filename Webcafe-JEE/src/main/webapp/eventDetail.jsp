@@ -14,6 +14,11 @@
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <%@include file="WEB-INF/jspf/contentContainerOpen.jspf" %>
 
+        <c:if test="${detailEvent.getVisitorsList().contains(loggedInUser)}">
+            <p>I can't go, <a href="${root}/Account/Event/Unregister?id=${detailEvent.getId()}">unsubscribe</a> from the event.</p>
+            <br />
+        </c:if>
+
         <article>
             <h2>${detailEvent.getName()} <span class="subtitle"> </span></h2>
             <div class="border"></div>
