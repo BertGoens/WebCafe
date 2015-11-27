@@ -28,6 +28,9 @@
         <form id="register" method="post" action="${root}/Account" enctype="multipart/form-data">
             <ul>
                 <li>
+                    <input type="hidden" readonly name="userId" id="userId" value="${loggedInUser.getId()}">
+                </li>
+                <li>
                     <label for="email">Email: </label>
                     <input id="email" type="email" required name="email"
                            value="${loggedInUser.getEmail()}"/>
@@ -64,6 +67,9 @@
                 </li>
                 <li>
                     <label>Photo: </label>
+                    <c:if test="${loggedInUser.getImagePath() != null}">
+                        <img src="${root}/${loggedInUser.getImagePath()}" width="30" height="30" />
+                    </c:if>
                     <input id="image"  type="file" name="file"/>
                 </li>
                 <li>

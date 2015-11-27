@@ -9,7 +9,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import validator.RegisterUserValidator;
+import validator.CreateUserValidator;
 
 /* @author BertGoens */
 public class RegisterUser extends HttpServlet {
@@ -31,7 +31,7 @@ public class RegisterUser extends HttpServlet {
             throws ServletException, IOException {
 
         User registeredUser = null;
-        RegisterUserValidator rVal = new RegisterUserValidator();
+        CreateUserValidator rVal = new CreateUserValidator();
         try {
             //Validate
             FileItemFactory factory = new DiskFileItemFactory();

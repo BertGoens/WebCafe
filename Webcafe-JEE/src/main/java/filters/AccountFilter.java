@@ -21,11 +21,9 @@ public class AccountFilter implements Filter {
         User currentUser = UsersUtil.getLoggedInUser(context);
         if (currentUser != null) {
             chain.doFilter(request, response);
-            return;
         } else {
             HttpServletResponse res = (HttpServletResponse) response;
             res.sendRedirect(context.getContextPath() + "/User/Login");
-            return;
         }
     }
 

@@ -8,8 +8,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import util.UsersUtil;
-import validator.AccountValidator;
+import validator.UpdateUserValidator;
 
 /* @author BertGoens */
 public class Account extends HttpServlet {
@@ -28,9 +27,7 @@ public class Account extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //Update validator
-        AccountValidator AccVal = new AccountValidator(UsersUtil.getLoggedInUser(getServletContext()));
+        UpdateUserValidator AccVal = new UpdateUserValidator();
         try {
             //Validate
             FileItemFactory factory = new DiskFileItemFactory();

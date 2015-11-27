@@ -23,7 +23,6 @@
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <url-pattern>/Admin/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
@@ -48,7 +47,23 @@
     </servlet>
     <servlet>
         <servlet-name>Admin</servlet-name>
-        <servlet-class>servlets.Admin</servlet-class>
+        <servlet-class>servlets.admin.Admin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Table_User_List</servlet-name>
+        <servlet-class>servlets.admin.tables.user.UserList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Table_User_Create</servlet-name>
+        <servlet-class>servlets.admin.tables.user.UserCreate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Table_User_List</servlet-name>
+        <servlet-class>servlets.admin.tables.user.UserEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Table_User_Delete</servlet-name>
+        <servlet-class>servlets.admin.tables.user.UserDelete</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -129,6 +144,23 @@
     <servlet-mapping>
         <servlet-name>Admin</servlet-name>
         <url-pattern>/Admin</url-pattern>
+        <url-pattern>/Admin/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Table_User_List</servlet-name>
+        <url-pattern>/Admin/Tables/User/List</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Table_User_Create</servlet-name>
+        <url-pattern>/Admin/Tables/User/Create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Table_User_List</servlet-name>
+        <url-pattern>/Admin/Tables/User/Edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Table_User_Delete</servlet-name>
+        <url-pattern>/Admin/Tables/User/Delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

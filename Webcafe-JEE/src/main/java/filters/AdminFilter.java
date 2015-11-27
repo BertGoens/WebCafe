@@ -23,17 +23,11 @@ public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         User currentUser = UsersUtil.getLoggedInUser(context);
-        if (currentUser != null && currentUser.getIsAdmin()) {
+        if (currentUser.getIsAdmin()) {
             chain.doFilter(request, response);
         } else {
             HttpServletResponse res = (HttpServletResponse) response;
-            if (currentUser == null) {
-                res.sendRedirect(context.getContextPath() + "/User/Login");
-                return;
-            } else {
-                res.sendRedirect(context.getContextPath() + "/Home");
-                return;
-            }
+            res.sendRedirect(context.getContextPath() + "/Home");
         }
     }
 

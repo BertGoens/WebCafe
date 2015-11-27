@@ -20,6 +20,7 @@
                     <li>${entry.value}</li>
                     </c:forEach>
             </ul>
+            <br>
         </c:if>
         <div class="border"></div>
         <form id="register" method="post" action="${root}/User/Register?id=${id}" enctype="multipart/form-data">

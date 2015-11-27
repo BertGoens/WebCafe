@@ -8,16 +8,14 @@ import java.util.*;
 import model.User;
 import org.apache.commons.fileupload.FileItem;
 
-/*
- @author BertGoens
- */
-public class RegisterUserValidator implements ObjectValidator<User> {
+/* @author BertGoens */
+public class CreateUserValidator implements ObjectValidator<User> {
 
     private int eventId = -1;
     private User returnUser;
     private HashMap<String, String> errors;
 
-    public RegisterUserValidator() {
+    public CreateUserValidator() {
         eventId = -1;
         errors = new HashMap<>();
     }
@@ -67,6 +65,10 @@ public class RegisterUserValidator implements ObjectValidator<User> {
         }
 
         switch (key) {
+            case "isAdmin":
+                boolean admin = Boolean.valueOf(value);
+                returnUser.setIsAdmin(admin);
+                break;
             case "email":
                 if (!value.contains("@")) {
                     errors.put(key, "email must contain @ sign");

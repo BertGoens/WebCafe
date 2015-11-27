@@ -8,16 +8,14 @@ import java.util.*;
 import model.User;
 import org.apache.commons.fileupload.FileItem;
 
-/*
- @author BertGoens
- */
-public class AccountValidator implements ObjectValidator<Boolean> {
+/* @author BertGoens */
+public class UpdateUserValidator implements ObjectValidator<Boolean> {
 
     private User updateUser;
     private HashMap<String, String> errors;
 
-    public AccountValidator(User updateUser) {
-        this.updateUser = updateUser;
+    public UpdateUserValidator() {
+        this.updateUser = new User();
         errors = new HashMap<>();
     }
 
@@ -47,7 +45,9 @@ public class AccountValidator implements ObjectValidator<Boolean> {
         }
 
         UserDao ud = new UserDao();
-        ud.merge(updateUser);
+        if (updateUser.getId() > 0) {
+            ud.merge(updateUser);
+        }
 
         return errors.isEmpty();
     }
@@ -59,6 +59,16 @@ public class AccountValidator implements ObjectValidator<Boolean> {
         }
 
         switch (key) {
+            case "userId":
+                int uid = Integer.valueOf(value);
+                updateUser.setId(uid);
+                break;
+
+            case "isAdmin":
+                boolean admin = Boolean.valueOf(value);
+                updateUser.setIsAdmin(admin);
+                break;
+
             case "email":
                 if (!value.contains("@")) {
                     errors.put(key, "email must contain @ sign");
@@ -212,6 +222,10 @@ public class AccountValidator implements ObjectValidator<Boolean> {
 
     public HashMap<String, String> getErrors() {
         return (HashMap<String, String>) errors.clone();
+    }
+
+    public User getUpdateUser() {
+        return updateUser;
     }
 
 }
