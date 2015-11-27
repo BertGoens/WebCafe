@@ -25,12 +25,11 @@ public class UnregisterUserToEvent extends HttpServlet {
         EventDao ed = new EventDao();
         Event subscribeTo = ed.findById(eventId);
 
-        ed.persist(subscribeTo);
-
         ed.getEntityManager().getTransaction().begin();
         subscribeTo.getVisitorsList().remove(loggedInUser);
         ed.getEntityManager().getTransaction().commit();
-        //ed.getEntityManager().flush();
+        
+        ed.merge(subscribeTo);
 
         response.sendRedirect(getServletContext().getContextPath() + "/Event/Detail?id=" + eventId);
         return;

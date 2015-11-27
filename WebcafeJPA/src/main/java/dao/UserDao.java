@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import model.Event;
@@ -37,33 +36,25 @@ public class UserDao extends BaseDao<User, Integer> {
     }
 
     public List<Event> getFutureRegistredEvents(User user) {
-        String q = "{SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE()) "
-                + "AND wc_Event.evt_id IN "
-                + "( SELECT event_users.evt_id FROM event_users"
-                + "WHERE event_users.usr_id = ?1)"
-                + "ORDER BY wc_EVent.date}";
-        Query query = getEntityManager().createNativeQuery(q, Event.class)
-                .setParameter(1, user.getId());
-//SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE())
-        //AND wc_Event.evt_id IN
-        //( SELECT event_users.evt_id FROM event_users
-        //WHERE event_users.usr_id = 1)
-        //ORDER BY Date
-        /*Query query = getEntityManager().createNativeQuery(
-                "SELECT * FROM wc_Event WHERE (wc_Event.date > CURRENT_DATE()) AND wc_Event.evt_id IN "
-                + "( SELECT event_users.evt_id FROM event_users HERE event_users.usr_id = 1)"
-                + "ORDER BY Date", Event.class);
-        query.setParameter(1, user.getId());
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
+        Root<Event> fromEvent = criteriaQuery.from(Event.class);
+        Path<Object> path = fromEvent.get("id"); // veld voor vergelijking met subquery
+        CriteriaQuery<Event> select = criteriaQuery.select(fromEvent);
 
-        return query.getResultList();
-         */
- /*Query query = getEntityManager().createNativeQuery("{call getRegisteredFutureEvents(?)}",
-                Event.class)
-                .setParameter(1, user.getId());
-*/
-        List<Event> result = query.getResultList();
-        return result;
+        Subquery<Event> subquery = criteriaQuery.subquery(Event.class);
 
+        Root fromEventSub = subquery.from(Event.class);
+        Join<Event, User> events_users = fromEventSub.join("Event.registeredUsers");
+
+        subquery.select(fromEventSub.get("Event.id")); // field to map with main-query
+        //event_users.usr_id = 1
+        subquery.where(criteriaBuilder.equal(events_users.get("User.id"), user.getId()));
+
+        select.where(criteriaBuilder.in(path).value(subquery));
+
+        TypedQuery<Event> typedQuery = getEntityManager().createQuery(select);
+        return typedQuery.getResultList();
     }
 
     public List<Event> getCreatorEvents(User user) {

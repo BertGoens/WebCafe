@@ -32,13 +32,13 @@
                     <div class="border"></div>
                     <form id="register" method="post" action="${root}/Admin/Tables/User/Create" enctype="multipart/form-data">
                         <ul>
-                            <li>
-                            <li>is admin</li>
-                            <select name="isAdmin">
+
+                            <li><p>is admin</p>
+                                <select name="isAdmin">
                                     <option value="true">True</option>
                                     <option value="false" selected="selected">False</option>
                                 </select>
-                            </li>
+
                             <li>
                                 <label for="email">Email: </label>
                                 <input id="email" type="email" required name="email" value=""/>

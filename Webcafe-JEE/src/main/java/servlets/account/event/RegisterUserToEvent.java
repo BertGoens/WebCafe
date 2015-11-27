@@ -25,7 +25,10 @@ public class RegisterUserToEvent extends HttpServlet {
 
         EventDao ed = new EventDao();
         Event subscribeTo = ed.findById(eventId);
+        ed.getEntityManager().getTransaction().begin();
         subscribeTo.getVisitorsList().add(loggedInUser);
+        ed.getEntityManager().getTransaction().commit();
+
         ed.merge(subscribeTo);
         response.sendRedirect(getServletContext().getContextPath() + "/Home");
 

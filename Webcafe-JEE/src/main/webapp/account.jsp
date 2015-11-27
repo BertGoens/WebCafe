@@ -37,7 +37,7 @@
                 </li>
                 <li>
                     <label for="pwd">Password: </label>
-                    <input id="pwd" type="password" required name="pwd"/>
+                    <input id="pwd" type="password" required name="pwd" value="${loggedInUser.getPassword()}"/>
                 </li>
                 <li>
                     <label for="name">Name: </label>
@@ -68,7 +68,9 @@
                 <li>
                     <label>Photo: </label>
                     <c:if test="${loggedInUser.getImagePath() != null}">
-                        <img src="${root}/${loggedInUser.getImagePath()}" width="30" height="30" />
+                        <a href="${root}${loggedInUser.getImagePath()}" target="_blank">
+                            <img src="${root}${loggedInUser.getImagePath()}" width="60" height="60" />
+                        </a>
                     </c:if>
                     <input id="image"  type="file" name="file"/>
                 </li>
@@ -79,32 +81,32 @@
         </form>
         <br>
 
-                           <h2>Your WebCafés<span class="subtitle"></span></h2>
-                           <div class="border"></div>
-                           <c:if test="${futureEvents != null}">
-                               <section>
-                                   <c:forEach items="${futureEvents}" var="event">
-                                       <article>
-                                           <h2>${event.getVenue()}</h2>
-                                           <li>${event.getCode()} ${event.getCity()}</li>
-                                           <li>
-                                               ${evt.getDate()}
-                                               <fmt:formatDate pattern="HH-mm" value="${evt.getStartTime()}" />h -
-                                               <fmt:formatDate pattern="HH-mm" value="${evt.getEndTime()}" />h
-                                           </li>
-                                           <li>
-                                               <span class="bold">Fee</span>:
-                                               <c:if test="${event.getFee() == 0}">Free</c:if>
-                                               <c:if test="${event.getFee() > 0}">&euro;<fmt:formatNumber type="number" maxFractionDigits="2" value="${event.getFee()}" /></c:if>
-                                               </li>
-                                               <li>
-                                                   <span class="bold">For who</span>: ${event.getForWho()}
-                                           </li>
-                                           <li><a href="${root}/Event/Detail?id=${event.getId()}">View details</a></li>
-                                       </article>
-                                   </c:forEach>
-                               </section>
-                           </c:if>
+        <h2>Your WebCafés<span class="subtitle"></span></h2>
+        <div class="border"></div>
+        <c:if test="${futureEvents != null}">
+            <section>
+                <c:forEach items="${subscribedEvents}" var="event">
+                    <article>
+                        <h2>${event.getVenue()}</h2>
+                        <li>${event.getCode()} ${event.getCity()}</li>
+                        <li>
+                            ${evt.getDate()}
+                            <fmt:formatDate pattern="HH-mm" value="${evt.getStartTime()}" />h -
+                            <fmt:formatDate pattern="HH-mm" value="${evt.getEndTime()}" />h
+                        </li>
+                        <li>
+                            <span class="bold">Fee</span>:
+                            <c:if test="${event.getFee() == 0}">Free</c:if>
+                            <c:if test="${event.getFee() > 0}">&euro;<fmt:formatNumber type="number" maxFractionDigits="2" value="${event.getFee()}" /></c:if>
+                            </li>
+                            <li>
+                                <span class="bold">For who</span>: ${event.getForWho()}
+                        </li>
+                        <li><a href="${root}/Event/Detail?id=${event.getId()}">View details</a></li>
+                    </article>
+                </c:forEach>
+            </section>
+        </c:if>
 
         <%@include file="WEB-INF/jspf/contentContainerClose.jspf" %>
         <%@include file="WEB-INF/jspf/widgets/widgetsOpen.jspf" %>

@@ -1,7 +1,8 @@
 package servlets.account;
 
-import dao.UserDao;
+import dao.EventDao;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -21,10 +22,18 @@ public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //List of subscribed events
-        UserDao daoUser = new UserDao();
-        User loggedIn = UsersUtil.getLoggedInUser(getServletContext());
-        List<Event> futureEvents = daoUser.getFutureRegistredEvents(loggedIn);
-        request.setAttribute("futureEvents", futureEvents);
+
+        EventDao daoEvent = new EventDao();
+        User loggedInUser = UsersUtil.getLoggedInUser(getServletContext());
+        List<Event> futureEvents = daoEvent.getComingEvents();
+        List<Event> subscribedEvents = new ArrayList<Event>();
+        for (int i = 0; i < futureEvents.size(); i++) {
+            if (futureEvents.get(i).getVisitorsList().contains(loggedInUser)) {
+                subscribedEvents.add(futureEvents.get(i));
+            }
+        }
+
+        request.setAttribute("subscribedEvents", subscribedEvents);
         request.getRequestDispatcher("/account.jsp").forward(request, response);
     }
 
@@ -39,13 +48,10 @@ public class Account extends HttpServlet {
             List items = upload.parseRequest(request);
             if (!AccVal.validate(items)) {
                 request.setAttribute("errors", AccVal.getErrors());
-                request.getRequestDispatcher("/Account").forward(request, response);
-                return;
             }
         } catch (FileUploadException ex) {
         }
-
-        response.sendRedirect(getServletContext().getContextPath() + "/Home");
+        response.sendRedirect(getServletContext().getContextPath() + "/account.jsp");
     }
 
 }

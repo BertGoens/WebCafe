@@ -12,6 +12,7 @@ import org.apache.commons.fileupload.FileItem;
 public class UpdateUserValidator implements ObjectValidator<Boolean> {
 
     private User updateUser;
+    private User originalUser;
     private HashMap<String, String> errors;
 
     public UpdateUserValidator() {
@@ -62,6 +63,9 @@ public class UpdateUserValidator implements ObjectValidator<Boolean> {
             case "userId":
                 int uid = Integer.valueOf(value);
                 updateUser.setId(uid);
+                UserDao ud = new UserDao();
+                originalUser = ud.findById(uid);
+                keepDataSafe();
                 break;
 
             case "isAdmin":
@@ -178,6 +182,13 @@ public class UpdateUserValidator implements ObjectValidator<Boolean> {
     }
 
     private void saveImage(FileItem item) {
+        if (updateUser.getImagePath() != null) {
+            if (item.getName().equals("") || item.getName().length() < 4) {
+                //No new image specified
+                return;
+            }
+        }
+
         if (!item.getContentType().startsWith("image")) {
             errors.put(item.getFieldName(), "Not an image type!");
             return;
@@ -218,6 +229,17 @@ public class UpdateUserValidator implements ObjectValidator<Boolean> {
         } catch (Exception ex) {
             errors.put(item.getFieldName(), "Error saving the file: " + ex.getMessage());
         }
+    }
+
+    private void keepDataSafe() {
+        updateUser.setBirthday(originalUser.getBirthday());
+        updateUser.setEmail(originalUser.getEmail());
+        updateUser.setFirm(originalUser.getFirm());
+        updateUser.setFirmFunction(originalUser.getFirmFunction());
+        updateUser.setForename(originalUser.getForename());
+        updateUser.setName(originalUser.getName());
+        updateUser.setPassword(originalUser.getPassword());
+        updateUser.setImagePath(originalUser.getImagePath());
     }
 
     public HashMap<String, String> getErrors() {
